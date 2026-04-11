@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Project - Content Collaboration Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/dashboard">Content Collaboration Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tasks">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link text-white-50">|</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4 mb-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/projects" class="text-decoration-none">Projects</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create New Project</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Header Card -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="mb-1 fw-bold">Create New Project</h3>
+                                <p class="text-muted mb-0 small">Set up a new collaborative project for your team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <form action="/projects/create" method="POST">
+                            <!-- Project Title -->
+                            <div class="mb-4">
+                                <label for="title" class="form-label fw-semibold">
+                                    Project Title <span class="text-danger">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="title"
+                                    name="title" 
+                                    class="form-control form-control-lg" 
+                                    placeholder="e.g., YouTube Channel Rebrand, Hackathon Web App"
+                                    required
+                                >
+                                <div class="form-text">Choose a clear and descriptive title for your project</div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-4">
+                                <label for="description" class="form-label fw-semibold">
+                                    Description
+                                </label>
+                                <textarea 
+                                    id="description"
+                                    name="description" 
+                                    class="form-control" 
+                                    rows="5"
+                                    placeholder="Describe the project goals, deliverables, and key objectives..."
+                                ></textarea>
+                                <div class="form-text">Provide details about what this project aims to accomplish</div>
+                            </div>
+
+                            <!-- Deadline -->
+                            <div class="mb-4">
+                                <label for="deadline" class="form-label fw-semibold">
+                                    Project Deadline
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="deadline"
+                                    name="deadline" 
+                                    class="form-control form-control-sm"
+                                >
+                                <div class="form-text">Set a target completion date for this project</div>
+                            </div>
+
+                            <!-- Status Selection (Optional) -->
+                            <div class="mb-4">
+                                <label for="status" class="form-label fw-semibold">
+                                    Initial Status
+                                </label>
+                                <select id="status" name="status" class="form-select form-select-sm">
+                                    <option value="Active" selected>Active</option>
+                                    <option value="Planning">Planning</option>
+                                    <option value="On Hold">On Hold</option>
+                                </select>
+                                <div class="form-text">Choose the current state of the project</div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-flex gap-2 pt-3 border-top">
+                                <button type="submit" class="btn btn-primary btn-lg px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                    Create Project
+                                </button>
+                                <a href="/projects" class="btn btn-outline-secondary btn-lg px-4">
+                                    Cancel
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Help Card -->
+                <div class="card border-0 bg-light mt-4">
+                    <div class="card-body p-4">
+                        <h6 class="fw-semibold mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 text-primary" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                            What happens next?
+                        </h6>
+                        <ul class="small text-muted mb-0 ps-3">
+                            <li class="mb-2">After creating the project, you can add team members and assign roles</li>
+                            <li class="mb-2">Break down the project into manageable tasks with deadlines</li>
+                            <li class="mb-0">Track progress and collaborate with your team in real-time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

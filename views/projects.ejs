@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects - Content Collaboration Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/dashboard">Content Collaboration Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tasks">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link text-white-50">|</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4 mb-5">
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                    <div>
+                        <h2 class="mb-1 fw-bold">Your Projects</h2>
+                        <p class="text-muted mb-0">Manage and track all your collaborative projects</p>
+                    </div>
+                    <a href="/projects/create" class="btn btn-primary btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Create New Project
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter and Search Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-3">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-muted" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </span>
+                                    <input type="text" class="form-control border-start-0" placeholder="Search projects...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>All Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Planning">Planning</option>
+                                    <option value="On Hold">On Hold</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Sort by: Newest</option>
+                                    <option value="oldest">Oldest</option>
+                                    <option value="deadline">Deadline</option>
+                                    <option value="title">Title (A-Z)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 text-end">
+                                <button class="btn btn-outline-secondary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Grid View -->
+        <% if (projects.length === 0) { %>
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="text-muted" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                        </div>
+                        <h4 class="mb-2">No Projects Yet</h4>
+                        <p class="text-muted mb-4">Start by creating your first project to collaborate with your team</p>
+                        <a href="/projects/create" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            Create Your First Project
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="row g-4">
+            <% projects.forEach(project => { %>
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100 hover-shadow" style="transition: all 0.3s;">
+                    <div class="card-body p-4">
+                        <!-- Project Header -->
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="card-title fw-bold mb-0"><%= project.title %></h5>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="/projects/<%= project.project_id %>">View Details</a></li>
+                                    <li><a class="dropdown-item" href="/projects/<%= project.project_id %>/edit">Edit</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <form action="/projects/<%= project.project_id %>/delete" method="POST">
+                                        <button class="dropdown-item text-danger" 
+                                           onclick="return confirm('Are you sure?')">Delete
+                                        </button>
+                                    </form>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Project Description -->
+                        <p class="card-text text-muted small mb-3">
+                            <%= project.description ? (project.description.length > 100 ? project.description.substring(0, 100) + '...' : project.description) : 'No description provided' %>
+                        </p>
+
+                        <!-- Project Meta -->
+                        <div class="mb-3">
+                            <% 
+                            let statusClass = 'success';
+                            let statusBg = 'success-subtle';
+                            if (project.status === 'Completed') {
+                                statusClass = 'info';
+                                statusBg = 'info-subtle';
+                            } else if (project.status === 'Planning') {
+                                statusClass = 'warning';
+                                statusBg = 'warning-subtle';
+                            } else if (project.status === 'On Hold') {
+                                statusClass = 'secondary';
+                                statusBg = 'secondary-subtle';
+                            }
+                            %>
+                            <span class="badge bg-<%= statusBg %> text-<%= statusClass %> px-3 py-2"><%= project.status %></span>
+                        </div>
+
+                        <!-- Project Details -->
+                        <div class="border-top pt-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <small class="text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="me-1" viewBox="0 0 16 16">
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                    </svg>
+                                    Deadline
+                                </small>
+                                <small class="fw-semibold">
+                                    <%= project.deadline ? new Date(project.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Not set' %>
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="mt-3">
+                            <a href="/projects/<%= project.project_id %>" class="btn btn-outline-primary btn-sm w-100">
+                                View Project
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="ms-1" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+
+        <!-- Pagination -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <nav>
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
