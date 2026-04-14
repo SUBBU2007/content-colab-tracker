@@ -102,20 +102,6 @@
                                 <div class="form-text">Add any additional details or requirements</div>
                             </div>
 
-                            <!-- Assigned To -->
-                            <!-- <div class="mb-4">
-                                <label for="assigned_to" class="form-label fw-semibold">
-                                    Assign To
-                                </label>
-                                <select id="assigned_to" name="assigned_to" class="form-select form-select-lg">
-                                    <option value="">Select team member</option>
-                                    <option value="1" <%= task.assigned_to == 1 ? 'selected' : '' %>>John Doe</option>
-                                    <option value="2" <%= task.assigned_to == 2 ? 'selected' : '' %>>Jane Smith</option>
-                                    <option value="3" <%= task.assigned_to == 3 ? 'selected' : '' %>>Mike Johnson</option>
-                                </select>
-                                <div class="form-text">Choose who should work on this task</div>
-                            </div> -->
-
                             <!-- Due Date -->
                             <div class="mb-4">
                                 <label for="due_date" class="form-label fw-semibold">
@@ -143,19 +129,6 @@
                                 </select>
                                 <div class="form-text">Update the current status of this task</div>
                             </div>
-
-                            <!-- Priority (Optional Enhancement) -->
-                            <!-- <div class="mb-4">
-                                <label for="priority" class="form-label fw-semibold">
-                                    Priority
-                                </label>
-                                <select id="priority" name="priority" class="form-select form-select-lg">
-                                    <option value="Low" <%= task.priority === 'Low' ? 'selected' : '' %>>Low</option>
-                                    <option value="Medium" <%= task.priority === 'Medium' || !task.priority ? 'selected' : '' %>>Medium</option>
-                                    <option value="High" <%= task.priority === 'High' ? 'selected' : '' %>>High</option>
-                                </select>
-                                <div class="form-text">Set the priority level for this task</div>
-                            </div> -->
 
                             <!-- Action Buttons -->
                             <div class="d-flex gap-2 pt-3 border-top">
